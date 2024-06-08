@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "f257fd6d-5ed2-4958-8298-1cad76bcdc7e",
+		"name": "Merge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8508285"
+	},
+	"item": [
+		{
+			"name": "Merge",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "356507409;713813803"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstPublisherName\": \"Galakta\", \r\n    \"secondPublisherName\": \"Rebel\",\r\n    \"newPublisherName\": \"RebelGalaxy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/merge",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"merge"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

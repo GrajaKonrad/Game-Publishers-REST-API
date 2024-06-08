@@ -1,0 +1,10 @@
+				                GET	POST	PUT	    PATCH	DELETE
+/boardgames			            X	X	
+/boardgames/{id}		        X		    X	    X	    X
+/publishers			            X	X
+/publishers/{id}		        X		    X	    X	    X
+/publishers/{id}/boardgames   	X	{bg}
+/publishers/{id}/grades		    X	X		
+../grades/{id}/comment		    X		    X	    X	    X
+
+Połączenie wydawców /merges

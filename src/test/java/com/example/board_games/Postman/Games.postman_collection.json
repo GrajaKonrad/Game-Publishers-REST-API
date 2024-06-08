@@ -1,0 +1,181 @@
+{
+	"info": {
+		"_postman_id": "d104bf0b-0bbf-4b69-8bf2-890ee321eee2",
+		"name": "Games",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8508285"
+	},
+	"item": [
+		{
+			"name": "boardgames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/boardgames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boargame",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/boardgames/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boargames",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"graTEST\",\r\n    \"publisher\": \"pubTEST\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/boardgames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Gra",
+							"disabled": true
+						},
+						{
+							"key": "publisher",
+							"value": "pub",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boardgame",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "40493741"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"pubTEST\",\r\n    \"publisher\": \"pubTESTUP\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/boardgames/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boardgame",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"graPartial\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/boardgames/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "boardgame",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/boardgames/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"boardgames",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "74f8f5ea-0013-4a4e-a3e4-0cadaed6c079",
+		"name": "BoardgamesByPublisher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8508285"
+	},
+	"item": [
+		{
+			"name": "Boargames By Publisher",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/publishers/0/boardgames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publishers",
+						"0",
+						"boardgames"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Boardgames By Publisher",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Wsiąść do Pociągu\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/publishers/0/boardgames",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publishers",
+						"0",
+						"boardgames"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

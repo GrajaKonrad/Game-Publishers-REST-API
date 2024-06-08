@@ -1,0 +1,61 @@
+{
+	"info": {
+		"_postman_id": "8ef8087e-1d4e-4d67-babb-1f94c1a45473",
+		"name": "GradesByPublisher",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8508285"
+	},
+	"item": [
+		{
+			"name": "grades",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/publishers/0/grades",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publishers",
+						"0",
+						"grades"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "grades",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"grade\": 8,\r\n    \"concernsName\": \"Rebel\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/publishers/0/grades",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"publishers",
+						"0",
+						"grades"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
