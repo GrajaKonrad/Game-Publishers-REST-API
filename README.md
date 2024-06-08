@@ -16,10 +16,10 @@ The one of possible ways to communicate with the app's api is by Postman. Here I
 | /publishers/{id}/grades/{id}/comment  | 7     | comment to publisher grade    |                                   | update whole comment                  | update comment field      | delete comment    |
 | /merges                               | 8     |                               | merge both posted publishers      |                                       |                           |                   |
 
-NOTE: Changing Publisher name updates name in boardgames and grades
-NOTE: Deleting Publisher will set null in boardgames of that publisher and remove its grades from data
-NOTE: Adding grade to publisher will add empty comment to the grade, returning beside grade new comment object
-NOTE: Deleting comment will delte grade given to publisher
+NOTE: Changing Publisher name updates name in boardgames and grades\
+NOTE: Deleting Publisher will set null in boardgames of that publisher and remove its grades from data\
+NOTE: Adding grade to publisher will add empty comment to the grade, returning beside grade new comment object\
+NOTE: Deleting comment will delte grade given to publisher\
 NOTE: Meging publisher will change name in both of them, then leave 1 publisher object, deleting the other (and only publisher object)
 
 
