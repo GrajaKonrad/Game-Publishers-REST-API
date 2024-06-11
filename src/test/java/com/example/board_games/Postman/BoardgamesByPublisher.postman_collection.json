@@ -31,7 +31,12 @@
 			"name": "Boardgames By Publisher",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Token",
+						"value": "1234"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"Wsiąść do Pociągu\"\r\n}",

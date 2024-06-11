@@ -1,5 +1,6 @@
 package com.example.board_games.Controllers;
 
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -26,6 +27,15 @@ public class GamesController {
 
     public static List<Game> games = new LinkedList<>();
     static int gId = 0;
+
+    public static List<String> usedTokens = new LinkedList<>();
+    public static boolean checkToken(String token){
+        if(usedTokens.contains(token)){
+            return false;
+        }
+        usedTokens.add(token);
+        return true;
+    }
 
     /**
      * InnerGamesController
@@ -77,14 +87,19 @@ public class GamesController {
     }
 
     @PostMapping()
-    public ResponseEntity<Game> postGame(@RequestBody ReqBody reqBodyPost){
+    public ResponseEntity<Game> postGame(@RequestBody ReqBody reqBodyPost, @RequestHeader("Token") String token){
+        if (!checkToken(token)) {
+            return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .build();
+        }
         if (reqBodyPost.name == null || reqBodyPost.publisher == null) {
             throw new RecivedPartialData("Recived partial data");
         }
         Game game = new Game(gId++, reqBodyPost.name, reqBodyPost.publisher);
         games.add(game);
         return ResponseEntity
-            .status(HttpStatus.CREATED)
+            .created(URI.create("/boardgames/"+game.getId()))
             .eTag(Long.toString(game.hashCode()))
             .body(game);
     }
@@ -97,7 +112,6 @@ public class GamesController {
                     .ok()
                     .eTag(Long.toString(game.hashCode()))
                     .body(game);
-                
             }
         }
         throw new EntityNotFound("Game not found");

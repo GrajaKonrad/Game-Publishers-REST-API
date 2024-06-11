@@ -31,10 +31,15 @@
 			"name": "grades",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Token",
+						"value": "1234"
+					}
+				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"grade\": 8,\r\n    \"concernsName\": \"Rebel\"\r\n}",
+					"raw": "{\r\n    \"grade\": 8\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

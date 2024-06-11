@@ -49,7 +49,12 @@
 			"name": "publishers",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Token",
+						"value": "1234"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"PortalGames\"\r\n}",

@@ -2,6 +2,7 @@ package com.example.board_games.Controllers;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.net.URI;
 import java.time.LocalDate;
 
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,6 +22,15 @@ import com.Exceptions.EntityNotFound;;
 public class PublisherGradesController {
     public static List<Grade> gradesPublishers = new LinkedList<>();
     static int gId = 0;
+
+    public static List<String> usedTokens = new LinkedList<>();
+    public static boolean checkToken(String token){
+        if(usedTokens.contains(token)){
+            return false;
+        }
+        usedTokens.add(token);
+        return true;
+    }
 
     public PublisherGradesController(){
         Grade grade;
@@ -57,8 +68,7 @@ public class PublisherGradesController {
     }
 
     public record ReqBody(
-        Integer grade,
-        String concernsName
+        Integer grade
     ) {}
 
     @GetMapping
@@ -79,10 +89,8 @@ public class PublisherGradesController {
             .body(gradesByPublisher);
     }
 
-    private class GradeWithComment {
-        @SuppressWarnings("unused")
+    public static class GradeWithComment {
         Grade grade;
-        @SuppressWarnings("unused")
         Integer comment;
 
         public GradeWithComment(Grade grade, int comment){
@@ -92,16 +100,21 @@ public class PublisherGradesController {
     }
 
     @PostMapping
-    public ResponseEntity<GradeWithComment> addGrade(@PathVariable("publisherId") int publisherId, @RequestBody ReqBody reqBody){
+    public ResponseEntity<Grade> addGrade(@PathVariable("publisherId") int publisherId, @RequestBody ReqBody reqBody, @RequestHeader("Token") String token){
+        if(!checkToken(token)){
+            return ResponseEntity
+                .status(403)
+                .body(null);
+        }
         String publisherName = PublishersController.getPublisherById(publisherId);
         Grade grade = new Grade(gId++, reqBody.grade(), publisherName, LocalDate.now());
         gradesPublishers.add(grade);
         int commentId = PublisherGradeCommentsController.addEmptyComment(grade.getId());
         GradeWithComment gradeWithComment = new GradeWithComment(grade, commentId);
         return ResponseEntity
-            .ok()
-            .eTag(Long.toString(gradesPublishers.hashCode()))
-            .body(gradeWithComment);
+            .created(URI.create("/publishers/" + publisherId  + "/grades/" + grade.getId() + "/comment"))
+            .eTag(Long.toString(grade.hashCode()))
+            .body(grade);
     }
     
 }

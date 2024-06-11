@@ -1,5 +1,6 @@
 package com.example.board_games.Controllers;
 
+import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,6 +25,15 @@ import com.example.board_games.Entities.Publisher;
 @RestController
 @RequestMapping("publishers")
 public class PublishersController {
+    public static List<String> usedTokens = new LinkedList<>();
+    public static boolean checkToken(String token){
+        if(usedTokens.contains(token)){
+            return false;
+        }
+        usedTokens.add(token);
+        return true;
+    }
+
     static List<Publisher> publishers = new LinkedList<>();
     static int pId = 0;
 
@@ -79,7 +89,12 @@ public class PublishersController {
     }
 
     @PostMapping()
-    public ResponseEntity<Publisher> postPublisher(@RequestBody ReqBody reqBodyPost){
+    public ResponseEntity<Publisher> postPublisher(@RequestBody ReqBody reqBodyPost, @RequestHeader("Token") String token){
+        if (!checkToken(token)) {
+            return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .build();
+        }
         if (reqBodyPost.name == null) {
             throw new RecivedPartialData("No name provided");
         }
@@ -91,7 +106,7 @@ public class PublishersController {
         Publisher publisher = new Publisher(pId++, reqBodyPost.name, reqBodyPost.countryCode);
         publishers.add(publisher);
         return ResponseEntity
-            .status(HttpStatus.CREATED)
+            .created(URI.create("/publishers/"+publisher.getId()))
             .eTag(Long.toString(publisher.hashCode()))
             .body(publisher);
     }

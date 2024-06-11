@@ -49,7 +49,12 @@
 			"name": "boargames",
 			"request": {
 				"method": "POST",
-				"header": [],
+				"header": [
+					{
+						"key": "Token",
+						"value": "12345"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"name\": \"graTEST\",\r\n    \"publisher\": \"pubTEST\"\r\n}",
